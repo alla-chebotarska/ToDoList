@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+              <input v-model="isAllItemsDone" type="checkbox">
+              </div>
+            </div>
+            <input v-model="fromInput" v-on:keyup.enter="addItem" placeholder="What needs to be done?" 
+            type="text" class="form-control">
+        </div>
+        
+        <ul>
+            <div class="row" v-for="item in activeItems">
+                <todo-item v-bind:todo="item" v-bind:key="item.id">
+                </todo-item>
+                <button v-on:click='deleteItem(item)' type='button' class='m-1 btn btn-danger'>Delete</button>
+            </div>
+        </ul>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="m-1">{{ calculateAllItems }} items left </p>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <button v-on:click="visibility = 'all'" type="button" class="m-1 btn btn-outline-secondary">All</button>
+                <button v-on:click="visibility = 'active'" type="button"
+                    class="m-1 btn btn-outline-secondary">Active</button>
+                <button v-on:click="visibility = 'completed'" type="button"
+                    class="m-1 btn btn-outline-secondary">Completed</button>
+            </div>
+            <div class="col-md-4 text-right">
+                <button v-on:click="clearCompleated" type="button" class="m-1 btn btn-outline-secondary">Clear
+                    completed</button>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="todoItem.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
