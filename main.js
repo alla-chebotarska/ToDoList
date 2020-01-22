@@ -2,11 +2,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-        toDoList: [
-            { id: 0, text: "Milk", isDone: false },
-            { id: 2, text: "Apple", isDone: true },
-            { id: 3, text: "Banana", isDone: false },
-        ],
+        toDoList: todoStorage.getTodos(),
         fromInput: "",
         visibility: "all"
     },
@@ -40,6 +36,14 @@ var app = new Vue({
                 return filterOut(this.toDoList, true);
             }
         }
+    },
+    watch:{
+        toDoList: {
+            handler: function (todos) {
+              todoStorage.saveTodos(todos)
+            },
+            deep: true
+          }
     },
     methods: {
         addItem: function () {
