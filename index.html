@@ -7,46 +7,52 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-    <div id="app" class="container">
-        <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-              <input v-model="isAllItemsDone" type="checkbox">
-              </div>
-            </div>
-            <input v-model="fromInput" v-on:keyup.enter="addItem" placeholder="What needs to be done?" 
-            type="text" class="form-control">
-        </div>
-        
-        <ul>
-            <div class="row" v-for="item in activeItems">
-                <todo-item v-bind:todo="item" v-bind:key="item.id">
-                </todo-item>
-                <button v-on:click='deleteItem(item)' type='button' class='m-1 btn btn-danger'>Delete</button>
-            </div>
-        </ul>
+    <div id="app" class="container pt-5">
         <div class="row">
-            <div class="col-md-4">
-                <p class="m-1">{{ calculateAllItems }} items left </p>
+            <div class="col-8 offset-2 input">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input v-model="isAllItemsDone" type="checkbox">
+                        </div>
+                    </div>
+                    <input v-model="fromInput" v-on:keyup.enter="addItem" placeholder="What needs to be done?"
+                        type="text" class="form-control">
+                </div>
             </div>
-
-            <div class="col-md-4 text-center">
+        </div>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <ul>
+                    <div class="row" v-for="item in activeItems">
+                        <todo-item v-bind:todo="item" v-bind:key="item.id"></todo-item>
+                        <span v-on:click='deleteItem(item)' class="col-md-1"><i class="fas fa-times"></i></span>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 col-lg-2 offset-2 pt-2">
+                <p class="m-1 calculateAllItems">{{ calculateAllItems }} items left </p>
+            </div>
+            <div class="col-8 offset-2 col-lg-4 offset-lg-0  text-center pt-2">
                 <button v-on:click="visibility = 'all'" type="button" class="m-1 btn btn-outline-secondary">All</button>
                 <button v-on:click="visibility = 'active'" type="button"
                     class="m-1 btn btn-outline-secondary">Active</button>
                 <button v-on:click="visibility = 'completed'" type="button"
                     class="m-1 btn btn-outline-secondary">Completed</button>
             </div>
-            <div class="col-md-4 text-right">
+            <div class="col-8 offset-2 col-lg-2 offset-lg-0 text-center pt-2">
                 <button v-on:click="clearCompleated" type="button" class="m-1 btn btn-outline-secondary">Clear
                     completed</button>
             </div>
-
         </div>
+    </div>
 
     </div>
     <script src="storage.js"></script>

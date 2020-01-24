@@ -1,7 +1,47 @@
+[v-cloak] { display: none; }
+
 ul {
   list-style-type: none;
 }
 
 .done {
-    text-decoration: line-through; 
+	text-decoration: line-through; 
+	color: rgb(154, 154, 156);
+}
+
+ul div span{
+	float: right;
+	min-height: 100%;
+	width: 0;
+	text-align: center;
+	color: #2E3409;
+	opacity: 0;
+	transition: 0.3s;
+}
+
+ul div:hover span{
+	width: 40px;
+	opacity: 1;
+}
+
+.calculateAllItems {
+	color: rgb(154, 154, 156);
+}
+
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	border-top:  1px solid white;
+	height: 40px;
+	line-height: 40px;
+	padding-left:  15px;
+
+}
+
+.input{
+	padding: 0;
 }
